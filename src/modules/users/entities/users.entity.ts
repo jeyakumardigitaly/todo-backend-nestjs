@@ -34,6 +34,11 @@ export class User {
     })
     isActive!:boolean;
 
+    @Column({
+        type:'text',
+        nullable: true})
+    refreshTokenHash!: string | null;
+
     @CreateDateColumn({
         name:'created_at'
     })

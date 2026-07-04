@@ -21,9 +21,9 @@ export class AuthController {
         return this.authService.login(dto);
     }
 
-    // @Get()
-    // refresh(@Body() dto:RefreshToken){
-    //     return this.authService.refresh(dto.refreshToken)
-    // }
+    @Post('refresh')
+    refresh(@Body() dto:RefreshToken){
+        return this.authService.refreshToken(dto.refreshToken)
+    }
 
 }

@@ -77,4 +77,8 @@ export class UsersService {
     return bcrypt.compare(plainPassword,hashedPassword)
   }
 
+  async updateRefreshToken(userId:number,refreshTokenHash:string | null):Promise<void>{ 
+      await this.userRepository.update(userId,{refreshTokenHash})
+  }
+
 }

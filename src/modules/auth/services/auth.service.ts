@@ -80,7 +80,8 @@ export class AuthService {
         const accessToken = await this.jwtService.signAsync(
             {
                 sub:payload.sub,
-                email:payload.email
+                email:payload.email,
+                role:payload.role
             },
             {
                 secret:this.config.getOrThrow<string>('auth.database.jwt_secret'),
@@ -88,8 +89,12 @@ export class AuthService {
             }
         )
 
-        return accessToken
-        
+        return {
+          refreshToken,
+          accessToken,
+          tokenType: 'Bearer',
+        };
+
     }catch{
         throw new UnauthorizedException("Invalied Refresh Token")
     }
